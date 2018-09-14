@@ -55,7 +55,6 @@ class SynchronizationIpGeoBaseCommand extends Command
 
     protected function initialize(InputInterface $input, OutputInterface $output): void
     {
-        set_time_limit(-1);
         ini_set("memory_limit", "512M");
 
         $this->io = new SymfonyStyle($input, $output);
@@ -129,7 +128,6 @@ class SynchronizationIpGeoBaseCommand extends Command
         $tableName = $entityManager->getClassMetadata(EntityStrategy::getClassNameByFileName($fileName))->getTableName();
         $connection = $entityManager->getConnection();
         $platform   = $connection->getDatabasePlatform();
-
 
         $connection->executeUpdate($platform->getTruncateTableSQL($tableName));
 
